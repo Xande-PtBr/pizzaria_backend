@@ -31,7 +31,7 @@ import uploadConfig from './config/multer';
 
 const router = Router();
 
-const upload = multer(uploadConfig.upload("./tmp"));
+//const upload = multer(uploadConfig.upload("./tmp"));
 
 
 
@@ -51,7 +51,7 @@ router.post('/category', isAuthenticated, new CreateCategoryController().handle)
 router.get('/category', isAuthenticated, new ListCategoryController().handle) //Pesquisa por categoria
 
 //Rotas de Produtos
-router.post('/product', isAuthenticated, new CreateProductController().handle) // Cria produto
+//router.post('/product', isAuthenticated, new CreateProductController().handle) // Cria produto
 
 /* router.post('/product', isAuthenticated, upload.single('file'), new CreateProductController().handle) */ // Cria produto //estava sendo utilizado localmente
 

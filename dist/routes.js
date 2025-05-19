@@ -1,11 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
 const express_1 = require("express");
-const multer_1 = __importDefault(require("multer"));
 const CreateUserController_1 = require("./controllers/user/CreateUserController");
 const AuthUserController_1 = require("./controllers/user/AuthUserController");
 const DetailUserController_1 = require("./controllers/user/DetailUserController");
@@ -13,8 +9,6 @@ const isAuthenticated_1 = require("./middlewares/isAuthenticated");
 // Import das categorias
 const CreateCategoryController_1 = require("./controllers/category/CreateCategoryController");
 const ListCategoryController_1 = require("./controllers/category/ListCategoryController");
-// Import dos Produtos
-const CreateProductController_1 = require("./controllers/product/CreateProductController");
 const ListByCategoryController_1 = require("./controllers/product/ListByCategoryController");
 // Import das Order
 const CreateOrderController_1 = require("./controllers/order/CreateOrderController");
@@ -26,10 +20,9 @@ const ListOrdersController_1 = require("./controllers/order/ListOrdersController
 const DetailOrderController_1 = require("./controllers/order/DetailOrderController");
 /* import { FinishOrderController } from './controllers/order/' */
 const FinishOrderController_1 = require("./controllers/order/FinishOrderController");
-const multer_2 = __importDefault(require("./config/multer"));
 const router = (0, express_1.Router)();
 exports.router = router;
-const upload = (0, multer_1.default)(multer_2.default.upload("./tmp"));
+//const upload = multer(uploadConfig.upload("./tmp"));
 //rotas de usuários
 router.post("/users", new CreateUserController_1.CreateUserController().handle); //Cria user
 router.post('/session', new AuthUserController_1.AuthUserController().handle); //Login
@@ -38,7 +31,7 @@ router.get('/me', isAuthenticated_1.isAuthenticated, new DetailUserController_1.
 router.post('/category', isAuthenticated_1.isAuthenticated, new CreateCategoryController_1.CreateCategoryController().handle); //Cria categoria
 router.get('/category', isAuthenticated_1.isAuthenticated, new ListCategoryController_1.ListCategoryController().handle); //Pesquisa por categoria
 //Rotas de Produtos
-router.post('/product', isAuthenticated_1.isAuthenticated, new CreateProductController_1.CreateProductController().handle); // Cria produto
+//router.post('/product', isAuthenticated, new CreateProductController().handle) // Cria produto
 /* router.post('/product', isAuthenticated, upload.single('file'), new CreateProductController().handle) */ // Cria produto //estava sendo utilizado localmente
 router.get('/category/products', isAuthenticated_1.isAuthenticated, new ListByCategoryController_1.ListByCategoryController().handle); //Lista produtos por categoria
 //Rotas de Order
